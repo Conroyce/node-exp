@@ -2,6 +2,7 @@ var Express = require('express');
 var app = Express();
 
 app.use("/", function(req, res) {
+  console.log(req.path);
   res.send("hello world");
 });
 
