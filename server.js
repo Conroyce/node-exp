@@ -12,6 +12,8 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 app.use(multer()); // for parsing multipart/form-data
 
 
+
+
 app.get("/users",function(req,res) {
   res.send(userFile);
 })
@@ -29,7 +31,9 @@ app.post("/users", function(req, res, next) {
   // fs.appendFileSync("./users.json",user);
 });
 
-
+app.get('*', function(req, res) {
+  res.send('Error: 404',404)
+});
 
 var port = "8080";
 var server = app.listen(port);
