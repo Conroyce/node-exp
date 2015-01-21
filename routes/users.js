@@ -25,4 +25,13 @@ router.route("/:userid")
   .post(function(){})
   .delete(function(){});
 
+router.route("/:curUser/:viewUser")
+  .get(function(req,res,next) {
+    var curId = req.params.curUser
+    var viewId = req.params.viewUser
+    if (usersFile[curId]) {
+      res.render('user', {usersFile: usersFile[viewId]});
+    }
+  })
+
 module.exports = router
