@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title= header
+  body
+    h1.main-header Hello World
+    .container
+      a#link(href="http://makersquare.com") Link to #{destination}
+      ul
+        each item in [1,2,3]
+          li= item 
+      ul 
+        each person in [{name:"ryu"}, {name: "ken"}, {name: "chun-li"}]
+          li I am #{person.name}    
