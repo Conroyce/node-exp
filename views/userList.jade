@@ -1,0 +1,12 @@
+doctype html
+html
+  head
+    title Users
+    link(href="/css/main.css", rel="stylesheet")
+  body
+    h1 Users
+    each item in usersFile
+      ol
+        li Name: #{item.name}  
+        li Sex: #{item.gender}
+        li Age: #{item.age}

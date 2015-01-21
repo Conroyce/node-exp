@@ -1,29 +1,28 @@
 var express = require('express');
+var usersFile = require('../users')
 var router = express.Router();
-var users = require('./routes/users');
 
-router.param("userid", function(req, res, next) {
-  var id = req.params('userid');
-  var user = new User(id);
-  req.user = user;
-  next();
-})
 
-router.route("/users")
-    .get(function(){})
-    .post(function(){})
-    .delete(function(){})
-    .put(function(){})
-    .patch(function(){});
+// router.param("userid", function(req, res, next) {
+//   var id = req.params('userid');
+//   var user = new User(id);
+//   req.user = user;
+//   next();
+// })
 
-router.get("/users/:userid", function(req, res, next) {
-  res.json(req.user)
-});
+router.route("/")
+  .get(function(req,res,next){
+    res.render('userList', {usersFile: usersFile});
+  })
+  .post(function(){})
+  .delete(function(){});
 
-router.get('/', function(req, res, next) {
-  res.send("users");
-});
+router.route("/:userid") 
+  .get(function(req,res,next){
+    var id = req.params.userid
+    res.render('user', {usersFile: usersFile[id]});
+  })
+  .post(function(){})
+  .delete(function(){});
 
 module.exports = router
-
-app.listen(8080);

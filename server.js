@@ -1,22 +1,19 @@
 var Express = require('express');
 var fs = require('fs');
-var users = require('./routes/user');
-var userFile = require('./users');
+var users = require('./routes/users');
 var bodyParser = require('body-parser');
 var multer = require('multer');
 var app = Express();
 
-// app.use(Express.static(__dirname+"/www"));
+app.use(Express.static(__dirname+"/www"));
 app.use(Express.static(__dirname+"/assets"));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(multer()); // for parsing multipart/form-data
 app.engine('jade',require('jade').__express);
+app.set("views", "./views")
 app.set("view engine", "jade");
 
-app.get("/", function(req,res,next) {
-  res.send("<h1>Hello world</h1>");
-});
 
 app.use("/users", users);
 
@@ -24,30 +21,26 @@ app.use("/users", users);
 //   res.render('index', {header: "Jade Rocks!"});
 // });
 
-// app.get("/users",function(req,res) {
-//   res.send(userFile);
-// })
-
 // app.get("/users/:id",function(req,res, next) {
 //   var userId = req.params.id;
 //   res.send(userFile[userId])
 // })
 
-app.post("/users", function(req, res, next) {
-  var uniq = true;
-  userFile.forEach(function(user) {
-    if (user._id == req.body._id) {
-      uniq == false;
-      console.log(user.index+" "+req.body.index); 
-    }
-  });
-  if (uniq) {
-    // userFile.push(req.body);
-  }
+// app.post("/users", function(req, res, next) {
+//   var uniq = true;
+//   userFile.forEach(function(user) {
+//     if (user._id == req.body._id) {
+//       uniq == false;
+//       console.log(user.index+" "+req.body.index); 
+//     }
+//   });
+//   if (uniq) {
+//     // userFile.push(req.body);
+//   }
   
-  fs.writeFileSync("./users.json",JSON.stringify(userFile));
+//   fs.writeFileSync("./users.json",JSON.stringify(userFile));
 
-});
+// });
 
 app.get('*', function(req, res) {
   res.send('Error: 404',404)
