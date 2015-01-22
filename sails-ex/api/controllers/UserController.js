@@ -12,7 +12,7 @@ module.exports = {
   },
   show: function(req, res) {
     var id = req.params.id
-    return res.send(usersFile[id]);
+    return res.view({users: usersFile[id]});
   }
 };
 
