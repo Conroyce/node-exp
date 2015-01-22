@@ -14,12 +14,7 @@ app.engine('jade',require('jade').__express);
 app.set("views", "./views")
 app.set("view engine", "jade");
 
-
 app.use("/users", users);
-
-// app.get("/",function(req,res,next) {    // <---test section
-//   res.render('index', {header: "Jade Rocks!"});
-// });
 
 // app.get("/users/:id",function(req,res, next) {
 //   var userId = req.params.id;
