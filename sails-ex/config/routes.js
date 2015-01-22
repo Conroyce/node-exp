@@ -35,7 +35,9 @@ module.exports.routes = {
   '/': {
     view: 'homepage'
   },
-  "get /users": "UserController.index"
+  "get /users": "UserController.index",
+  
+  "get /users/:id": "UserController.show"
  
 
   /***************************************************************************

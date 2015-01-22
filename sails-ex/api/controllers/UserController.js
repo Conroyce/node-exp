@@ -8,7 +8,11 @@ var usersFile = require('./users');
 
 module.exports = { 
   index: function(req, res) {
-    return res.send(usersFile);
+    return res.view({users: usersFile});
+  },
+  show: function(req, res) {
+    var id = req.params.id
+    return res.send(usersFile[id]);
   }
 };
 
